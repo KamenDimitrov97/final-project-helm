@@ -1,0 +1,27 @@
+replicaCount: 3
+
+image:
+  repository: stroming/final-project-telerik
+  pullPolicy: Always
+  tag: latest
+
+imagePullSecrets: [] # TO-DO
+nameOverride: ""
+fullnameOverride: ""
+
+securityContext: 
+  readOnlyRootFilesystem: true
+  # Docker image handles the user already
+  # runAsNonRoot: true
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 60
+  targetMemoryUtilizationPercentage: 60
+
+# TO-DO add a service
+service:
+  type: ClusterIP
+  port: 3333
